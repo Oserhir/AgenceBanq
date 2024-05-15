@@ -1,0 +1,6 @@
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\bin\Debug\agence-bancaire-DataAccess-Layer.dll
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\bin\Debug\agence-bancaire-DataAccess-Layer.pdb
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\obj\Debug\agence-bancaire-DataAccess-Layer.csproj.AssemblyReference.cache
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\obj\Debug\agence-bancaire-DataAccess-Layer.csproj.CoreCompileInputs.cache
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\obj\Debug\agence-bancaire-DataAccess-Layer.dll
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\obj\Debug\agence-bancaire-DataAccess-Layer.pdb

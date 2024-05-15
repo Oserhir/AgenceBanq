@@ -1,0 +1,9 @@
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\agence-bancaire-Business-Layer.dll
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\agence-bancaire-Business-Layer.pdb
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\agence-bancaire-DataAccess-Layer.dll
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\agence-bancaire-DataAccess-Layer.pdb
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\obj\Debug\agence-bancaire-Business-Layer.csproj.AssemblyReference.cache
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\obj\Debug\agence-bancaire-Business-Layer.csproj.CoreCompileInputs.cache
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\obj\Debug\agence-bancaire-Business-Layer.dll
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\obj\Debug\agence-bancaire-Business-Layer.pdb
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\obj\Debug\agence-b.674E0EBF.Up2Date
