@@ -1,14 +1,15 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
+
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace agence_bancaire_DataAccess_Layer
 {
-    public class clsPersonData
+    public  class clsPersonData
     {
         public static DataTable GetAllPeople()
         {
@@ -41,7 +42,7 @@ namespace agence_bancaire_DataAccess_Layer
 
         public static bool GetPersonInfoByID(
             int PersonID, ref string FirstName,  ref string LastName,  ref DateTime DateOfBirth,
-           ref string Address, ref string Phone, ref string Email )
+           ref string Address, ref string Phone, ref string Email, ref string CIN)
         {
             bool isFound = false;
 
@@ -66,7 +67,8 @@ namespace agence_bancaire_DataAccess_Layer
                             LastName = (string)reader["LastName"];
                             DateOfBirth = (DateTime)reader["DateOfBirth"];
                             Address = (string)reader["Address"];
-                            Phone = (string)reader["Phone"];
+                            CIN = (string)reader["CIN"];
+                            Phone = (string)reader["PhoneNumber"];
 
                             if (reader["Email"] != DBNull.Value)
                             {
@@ -89,10 +91,12 @@ namespace agence_bancaire_DataAccess_Layer
             }
 
             return isFound;
+
+
         }
 
         public static int AddNewPerson(  string FirstName,  string LastName,
-              DateTime DateOfBirth,  string Address,  string Phone,  string Email)
+              DateTime DateOfBirth,  string Address,  string Phone,  string Email, string CIN)
         {
 
             int PersonID = -1;
@@ -109,6 +113,7 @@ namespace agence_bancaire_DataAccess_Layer
                     command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
                     command.Parameters.AddWithValue("@Address", Address);
                     command.Parameters.AddWithValue("@Phone", Phone);
+                    command.Parameters.AddWithValue("@CIN", CIN);
 
                     if (Email != "" && Email != null)
                         command.Parameters.AddWithValue("@Email", Email);
@@ -132,10 +137,12 @@ namespace agence_bancaire_DataAccess_Layer
 
 
             return PersonID;
+
+
         }
 
         public static bool UpdatePerson(int PersonID,  string FirstName,  string LastName,  DateTime DateOfBirth,
-            string Address,  string Phone,  string Email)
+            string Address,  string Phone,  string Email, string CIN)
         {
 
             int rowsAffected = 0;
@@ -153,6 +160,7 @@ namespace agence_bancaire_DataAccess_Layer
                     command.Parameters.AddWithValue("@LastName", LastName);
                     command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
                     command.Parameters.AddWithValue("@Address", Address);
+                    command.Parameters.AddWithValue("@CIN", CIN);
                     command.Parameters.AddWithValue("@Phone", Phone);
 
                     if (Email != "" && Email != null)
@@ -166,6 +174,7 @@ namespace agence_bancaire_DataAccess_Layer
             }
 
             return (rowsAffected > 0);
+
         }
 
 
@@ -196,32 +205,32 @@ namespace agence_bancaire_DataAccess_Layer
             }
 
             return (rowsAffected > 0);
-
         }
 
         public static bool IsPersonExist(int PersonID)
         {
 
-            bool isFound = false;
+            //bool isFound = false;
 
-            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
-            {
-                connection.Open();
+            //using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            //{
+            //    connection.Open();
 
-                using (SqlCommand command = new SqlCommand("SP_IsPersonExist", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
+            //    using (SqlCommand command = new SqlCommand("SP_IsPersonExist", connection))
+            //    {
+            //        command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.AddWithValue("@PersonID", PersonID);
+            //        command.Parameters.AddWithValue("@PersonID", PersonID);
 
-                    int result = (int)command.ExecuteScalar();
+            //        int result = (int)command.ExecuteScalar();
 
-                    isFound = (result == 1);
-                }
+            //        isFound = (result == 1);
+            //    }
 
-            }
+            //}
 
-            return isFound;
+            //return isFound;
+            return true;
 
         }
 

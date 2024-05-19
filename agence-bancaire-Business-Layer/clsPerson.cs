@@ -20,6 +20,7 @@ namespace agence_bancaire_Business_Layer
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
+        public string CIN { get; set; }
 
         public string fullName { get { return $"{firstName} {lastName}"; } }
 
@@ -32,12 +33,13 @@ namespace agence_bancaire_Business_Layer
             this.PhoneNumber = "";
             this.Email = "";
             this.Address = "";
+            this.CIN = "";
 
-            _Mode = enMode.addNew;
+            this._Mode = enMode.addNew;
         }
 
         public clsPerson(int PersonID , string firstName, string lastName, DateTime DateOfBirth
-            , string PhoneNumber, string Email, string Address)
+            , string PhoneNumber, string Email, string Address, string CIN)
         {
             this.PersonID = PersonID;
             this.firstName = firstName;
@@ -46,15 +48,16 @@ namespace agence_bancaire_Business_Layer
             this.PhoneNumber = PhoneNumber;
             this.Email = Email;
             this.Address = Address;
+            this.CIN = CIN;
 
-            _Mode = enMode.Update;
+            this._Mode = enMode.Update;
         }
 
 
         private bool _AddNewPerson()
         {
             this.PersonID = clsPersonData.AddNewPerson(this.firstName,this.lastName,this.DateOfBirth,
-                this.Address,this.PhoneNumber  ,this.Email);
+                this.Address,this.PhoneNumber  ,this.Email, this.CIN);
 
             return this.PersonID != -1;
         }
@@ -62,10 +65,10 @@ namespace agence_bancaire_Business_Layer
         private bool _UpdatePerson()
         {
             return clsPersonData.UpdatePerson(this.PersonID,this.firstName,this.lastName,this.DateOfBirth
-                ,this.Address,this.PhoneNumber,this.Email);
+                ,this.Address,this.PhoneNumber,this.Email, this.CIN);
         }
 
-        public bool _Save()
+        public bool Save()
         {
             switch (_Mode)
             {
@@ -107,12 +110,13 @@ namespace agence_bancaire_Business_Layer
             string FirstName = "";
             string LastName = "";  DateTime DateOfBirth = DateTime.Now; 
             string Address = ""; string Phone = ""; string Email = "";
+            string CIN = "";
 
             if (clsPersonData.GetPersonInfoByID( PersonID, ref FirstName, ref LastName, ref DateOfBirth,
-                  ref Address, ref Phone, ref Email))
+                  ref Address, ref Phone, ref Email, ref CIN))
             {
                 return new clsPerson(  PersonID, FirstName, LastName,   DateOfBirth
-            , Phone,   Email,   Address);
+            , Phone,   Email,   Address, CIN);
             }
             else
             {
