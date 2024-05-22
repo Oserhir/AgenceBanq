@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -115,6 +116,22 @@ namespace agence_bancaire_Business_Layer
                 return null;
             }
 
+        }
+
+
+        public bool CanApplyOverdraft( float amount)
+        {
+            return (amount <= (this.overdraftLimit + this.Balance));
+        }
+
+        public static int CalculateOverdraftFee()
+        {
+            return 35; 
+        }
+
+        public static bool isCheckingAccountExist(int ID)
+        {
+            return clsCheckingAccountData.IsCheckingAccounttExist(ID);
         }
 
 

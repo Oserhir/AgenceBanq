@@ -1,4 +1,5 @@
-﻿using agence_bancaire_API.DTO;
+﻿using agence_bancaire_API.CustomActionFilters;
+using agence_bancaire_API.DTO;
 using agence_bancaire_Business_Layer;
 using agence_bancaire_Business_Layer.Enums;
 using AutoMapper;
@@ -17,34 +18,38 @@ namespace agence_bancaire_API.Controllers
     public class PeopleController : ControllerBase
     {
         [HttpPost]
+        [ValidateModule]
         public async Task<IActionResult> createPerson([FromBody] CreatePersonRequestDTO request)
         {
-            clsPerson _Person = new clsPerson();
+            
+                clsPerson _Person = new clsPerson();
 
-            _Person.firstName = request.firstName;
-            _Person.lastName = request.lastName;
-            _Person.PhoneNumber = request.PhoneNumber;
-            _Person.DateOfBirth = request.DateOfBirth;
-            _Person.Address = request.Address;
-            _Person.Email = request.Email;
-            _Person.CIN = request.CIN;
+                _Person.firstName = request.firstName;
+                _Person.lastName = request.lastName;
+                _Person.PhoneNumber = request.PhoneNumber;
+                _Person.DateOfBirth = request.DateOfBirth;
+                _Person.Address = request.Address;
+                _Person.Email = request.Email;
+                _Person.CIN = request.CIN;
 
-            try
-            {
-                if(_Person.Save())
+                try
                 {
-                    return CreatedAtAction(nameof(createPerson), new { id = _Person.PersonID }, _Person);
-                }
-                else
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError, $"Failed to create Person. Internal server error occurred.");
-                }
+                    if(_Person.Save())
+                    {
+                        return CreatedAtAction(nameof(createPerson), new { id = _Person.PersonID }, _Person);
+                    }
+                    else
+                    {
+                        return StatusCode(StatusCodes.Status500InternalServerError, $"Failed to create Person. Internal server error occurred.");
+                    }
                
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"{ex}");
-            }
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, $"{ex}");
+                }
+
+            
 
         }
 

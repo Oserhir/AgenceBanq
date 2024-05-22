@@ -15,9 +15,9 @@ namespace agence_bancaire_API.Controllers
             clsCheckingAccount _CheckingAccount = new clsCheckingAccount();
 
             _CheckingAccount.Account_Id = request.Account_Id;
-            _CheckingAccount.overdraftLimit = request.overdraftLimit;
-            _CheckingAccount.CreatedDate = request.CreatedDate;
-            _CheckingAccount.Balance = request.Balance;
+            _CheckingAccount.overdraftLimit = request.overdraftLimit ?? 1000;
+            _CheckingAccount.CreatedDate = DateTime.Now;
+            _CheckingAccount.Balance = request.Balance ?? 0;
 
             try
             {
@@ -82,9 +82,9 @@ namespace agence_bancaire_API.Controllers
             if (_CheckingAccount is null) { return NotFound(); }
 
             _CheckingAccount.Account_Id = request.Account_Id;
-            _CheckingAccount.overdraftLimit = request.overdraftLimit;
-            _CheckingAccount.CreatedDate = request.CreatedDate;
-            _CheckingAccount.Balance = request.Balance;
+            _CheckingAccount.overdraftLimit = request.overdraftLimit ?? 1000;
+            _CheckingAccount.CreatedDate = DateTime.Now;
+            _CheckingAccount.Balance = request.Balance ?? 0;
 
             if (_CheckingAccount.Save())
             {
@@ -114,5 +114,7 @@ namespace agence_bancaire_API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Failed to Delet eChecking Account. Internal server error occurred.");
             }
         }
+
+
     }
 }

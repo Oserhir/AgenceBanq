@@ -1,10 +1,6 @@
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\bin\Debug\agence-bancaire-DataAccess-Layer.dll.config
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\bin\Debug\agence-bancaire-DataAccess-Layer.dll
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\bin\Debug\agence-bancaire-DataAccess-Layer.pdb
-C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\obj\Debug\agence-bancaire-DataAccess-Layer.csproj.AssemblyReference.cache
-C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\obj\Debug\agence-bancaire-DataAccess-Layer.csproj.CoreCompileInputs.cache
-C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\obj\Debug\agence-bancaire-DataAccess-Layer.dll
-C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\obj\Debug\agence-bancaire-DataAccess-Layer.pdb
-C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\bin\Debug\agence-bancaire-DataAccess-Layer.dll.config
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\bin\Debug\Azure.Core.dll
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\bin\Debug\Azure.Identity.dll
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
@@ -73,4 +69,8 @@ C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\bi
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\bin\Debug\ru\Microsoft.Data.SqlClient.resources.dll
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\obj\Debug\agence-bancaire-DataAccess-Layer.csproj.AssemblyReference.cache
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\obj\Debug\agence-bancaire-DataAccess-Layer.csproj.CoreCompileInputs.cache
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\obj\Debug\agence-b.3BCE04E0.Up2Date
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\obj\Debug\agence-bancaire-DataAccess-Layer.dll
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-DataAccess-Layer\obj\Debug\agence-bancaire-DataAccess-Layer.pdb

@@ -150,8 +150,11 @@
     <Compile Include="clsAccount.cs" />
     <Compile Include="clsCheckingAccount.cs" />
     <Compile Include="clsClient.cs" />
+    <Compile Include="clsdeposit.cs" />
     <Compile Include="clsPerson.cs" />
+    <Compile Include="clsTransfer.cs" />
     <Compile Include="clsUser.cs" />
+    <Compile Include="clsWithdrawal.cs" />
     <Compile Include="Enums\enMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

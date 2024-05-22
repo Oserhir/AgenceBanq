@@ -11,14 +11,16 @@ namespace agence_bancaire_Business_Layer
 {
     public class clsClient
     {
-
         public enMode _Mode = enMode.addNew;
 
         public int ClientID { get; set; }
+
         public int PersonID { get; set; }
         public int CreatedByUserID { get; set; }
         public DateTime CreatedDate { get; set; }
-  
+        public clsPerson PersonInfo { get; set; }
+        public clsUser UserInfo { get; set; }
+
         public clsClient()
         {
             this.PersonID = -1;
@@ -36,6 +38,8 @@ namespace agence_bancaire_Business_Layer
             this.ClientID = ClientID;
             this.CreatedByUserID = CreatedByUserID;
             this.CreatedDate = CreatedDate;
+            this.PersonInfo = clsPerson.Find(this.PersonID);
+            this.UserInfo = clsUser.Find(this.CreatedByUserID);
 
             this._Mode = enMode.Update;
         }

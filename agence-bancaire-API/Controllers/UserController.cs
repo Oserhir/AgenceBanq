@@ -42,11 +42,16 @@ namespace agence_bancaire_API.Controllers
         {
             DataTable dt = clsUser.GetAllUsers();
 
-            var list = new List<clsUser>();
+            var list = new List<clsUserDTO>();
 
             foreach (DataRow row in dt.Rows)
             {
-                list.Add( new clsUser(row.Field<int>("UserID"), row.Field<int>("PersonID"), row["Password"].ToString().Trim()) ) ;
+                list.Add(new clsUserDTO(row.Field<string>("FirstName").Trim(), row.Field<string>("LastName").Trim()
+                    , row.Field<string>("PhoneNumber").Trim(), row.Field<string>("Address").Trim(), row.Field<string>("Email").Trim(),
+                    row.Field<string>("CIN").Trim(), Convert.ToDateTime(row["DateOfBirth"]), row.Field<string>("Password").Trim()
+                    ));
+
+                // list.Add( new clsUser(row.Field<int>("UserID"), row.Field<int>("PersonID"), row["Password"].ToString().Trim()) ) ;
             }   
 
             return Ok(list);
@@ -60,7 +65,11 @@ namespace agence_bancaire_API.Controllers
 
             if (User is null) { return NotFound(); }
 
-            return Ok(User);
+            var newUser = new clsUserDTO(User.PersonInfo.firstName.Trim(), User.PersonInfo.lastName.Trim()
+                    , User.PersonInfo.PhoneNumber.Trim(), User.PersonInfo.Address.Trim(), User.PersonInfo.Email.Trim(),
+                   User.PersonInfo.CIN.Trim(), User.PersonInfo.DateOfBirth, User.Password.Trim());
+
+            return Ok(newUser);
         }
 
         [HttpPut]
@@ -95,7 +104,7 @@ namespace agence_bancaire_API.Controllers
 
             if (clsUser.DeleteUser(id))
             {
-                return Ok(User);
+                return NoContent();
             }
             else
             {

@@ -1,13 +1,7 @@
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\agence-bancaire-Business-Layer.dll.config
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\agence-bancaire-Business-Layer.dll
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\agence-bancaire-Business-Layer.pdb
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\agence-bancaire-DataAccess-Layer.dll
-C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\agence-bancaire-DataAccess-Layer.pdb
-C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\obj\Debug\agence-bancaire-Business-Layer.csproj.AssemblyReference.cache
-C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\obj\Debug\agence-bancaire-Business-Layer.csproj.CoreCompileInputs.cache
-C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\obj\Debug\agence-b.674E0EBF.Up2Date
-C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\obj\Debug\agence-bancaire-Business-Layer.dll
-C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\obj\Debug\agence-bancaire-Business-Layer.pdb
-C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\agence-bancaire-Business-Layer.dll.config
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\Azure.Core.dll
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\Azure.Identity.dll
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
@@ -37,6 +31,7 @@ C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\System.Text.Json.dll
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\System.Threading.Tasks.Extensions.dll
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\System.ValueTuple.dll
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\agence-bancaire-DataAccess-Layer.pdb
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\agence-bancaire-DataAccess-Layer.dll.config
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\Azure.Core.xml
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\Azure.Identity.xml
@@ -77,3 +72,8 @@ C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\ru\Microsoft.Data.SqlClient.resources.dll
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\obj\Debug\agence-bancaire-Business-Layer.csproj.AssemblyReference.cache
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\obj\Debug\agence-bancaire-Business-Layer.csproj.CoreCompileInputs.cache
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\obj\Debug\agence-b.674E0EBF.Up2Date
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\obj\Debug\agence-bancaire-Business-Layer.dll
+C:\Users\YUSSEF\source\repos\agence-bancaire\agence-bancaire-Business-Layer\obj\Debug\agence-bancaire-Business-Layer.pdb

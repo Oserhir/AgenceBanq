@@ -1,4 +1,5 @@
 ﻿using agence_bancaire_API.DTO;
+using agence_bancaire_API.Global_Classes;
 using agence_bancaire_Business_Layer;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
@@ -14,9 +15,9 @@ namespace agence_bancaire_API.Controllers
         {
             clsAccount _Account = new clsAccount();
 
-            _Account.AccountNumber = request.AccountNumber;
+            _Account.AccountNumber = util.GenerateGUID();
             _Account.ClientID = request.ClientID;
-            _Account.CreatedDate = request.CreatedDate;
+            _Account.CreatedDate = DateTime.Now;
 
             try
             {
@@ -79,8 +80,6 @@ namespace agence_bancaire_API.Controllers
 
             if (Account is null) { return NotFound(); }
 
-            Account.CreatedDate = request.CreatedDate;
-            Account.AccountNumber = request.AccountNumber;
             Account.ClientID = request.ClientID;
 
             if (Account.Save())

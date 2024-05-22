@@ -171,6 +171,45 @@ namespace agence_bancaire_DataAccess_Layer
 
         }
 
+        public static bool GetCheckingAccountBalanceByAccountID(
+     int AcccountID, ref float Balance)
+        {
+            bool isFound = false;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SP_GetCheckingAccountBalanceByAccountID", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@AcccountID", AcccountID);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+
+                        if (reader.Read())
+                        {
+                            isFound = true;
+
+                            Balance = (float)reader["Balance"];
+                        }
+                        else
+                        {
+                            isFound = false;
+                        }
+
+                    }
+
+                }
+            }
+
+            return isFound;
+
+
+        }
+
         public static int AddNewCheckingAccount(int AccountID, DateTime CreatedDate,
               float Balance, float overdraftLimit)
         {
@@ -266,6 +305,100 @@ namespace agence_bancaire_DataAccess_Layer
             return (rowsAffected > 0);
         }
 
+
+        public static int Withdrawal(float amount, DateTime date_operation, int checkingaccount_id, int LevelID)
+        {
+            int Depose_id = -1;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SP_CheckingAccountWithdrawal", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@amount", amount);
+                    command.Parameters.AddWithValue("@date_operation", date_operation);
+                    command.Parameters.AddWithValue("@checkingaccount_id", checkingaccount_id);
+                    command.Parameters.AddWithValue("@LevelID", LevelID);
+
+                    SqlParameter outputIdParam = new SqlParameter("@NewWithdrawal_id", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+
+                    command.Parameters.Add(outputIdParam);
+
+                    command.ExecuteNonQuery();
+
+                    Depose_id = (int)command.Parameters["@NewWithdrawal_id"].Value;
+
+                }
+            }
+
+            return Depose_id;
+
+        }
+
+
+        public static int Transfer(float amount, DateTime date_operation, int checkingaccount_id, int targetAccount_id)
+        {
+            int transfer_id = -1;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SP_CheckingAccountTransfer", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@amount", amount);
+                    command.Parameters.AddWithValue("@date_operation", date_operation);
+                    command.Parameters.AddWithValue("@checkingaccount_id", checkingaccount_id);
+                    command.Parameters.AddWithValue("@targetAccount_id", targetAccount_id);
+
+                    SqlParameter outputIdParam = new SqlParameter("@NewTransfer_id", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+
+                    command.Parameters.Add(outputIdParam);
+
+                    command.ExecuteNonQuery();
+
+                    transfer_id = (int)command.Parameters["@NewTransfer_id"].Value;
+
+                }
+            }
+
+            return transfer_id;
+
+        }
+
+        public static bool IsCheckingAccounttExist(int CheckingAccountID)
+        {
+            bool isFound = false;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SP_ISCheckingAccountExist", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@CheckingAccounttID", CheckingAccountID);
+
+                    int result = (int)command.ExecuteScalar();
+
+                    isFound = (result == 1);
+                }
+
+            }
+
+            return isFound;
+
+        }
 
     }
 }
