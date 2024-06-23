@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace agence_bancaire_DataAccess_Layer
 {
@@ -41,7 +43,7 @@ namespace agence_bancaire_DataAccess_Layer
 
         public static bool GetUserInfoByUserID(
             int UserID, ref int PersonID, ref string FirstName, ref string LastName, ref DateTime DateOfBirth,
-           ref string Address, ref string Phone, ref string Email, ref string Password)
+           ref string Address, ref string Phone, ref string Email, ref string Password, ref int RoleID)
         {
             bool isFound = false;
 
@@ -69,6 +71,7 @@ namespace agence_bancaire_DataAccess_Layer
                             Address = (string)reader["Address"];
                             Phone = (string)reader["PhoneNumber"];
                             Password = (string)reader["Password"];
+                            RoleID = (int)reader["RoleID"];
 
                             if (reader["Email"] != DBNull.Value)
                             {
@@ -89,15 +92,16 @@ namespace agence_bancaire_DataAccess_Layer
 
                 }
             }
-
             return isFound;
 
 
         }
 
         public static bool GetUserInfoByEmailAndPassword(
-        string Email, string Password,  ref int UserID ,ref string FirstName, ref string LastName, ref DateTime DateOfBirth,
-        ref string Address, ref string Phone)
+        string Email, string Password,
+
+                ref int UserID, ref string FirstName, ref string LastName, ref DateTime DateOfBirth,
+                  ref string Address, ref string Phone, ref int RoleID, ref int PersonID)
         {
             bool isFound = false;
 
@@ -125,7 +129,8 @@ namespace agence_bancaire_DataAccess_Layer
                             DateOfBirth = (DateTime)reader["DateOfBirth"];
                             Address = (string)reader["Address"];
                             Phone = (string)reader["PhoneNumber"];
-
+                            RoleID = (int)reader["RoleID"];
+                            PersonID = (int)reader["PersonID"];
                         }
                         else
                         {
@@ -197,7 +202,7 @@ namespace agence_bancaire_DataAccess_Layer
 
         }
 
-        public static int AddNewUser( int PersonID, string Password )
+        public static int AddNewUser( int PersonID, string Password, int RoleID)
         {
             int UserID = -1;
 
@@ -210,6 +215,7 @@ namespace agence_bancaire_DataAccess_Layer
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@PersonID", PersonID);
                     command.Parameters.AddWithValue("@Password", Password);
+                    command.Parameters.AddWithValue("@RoleID", RoleID);
 
                     SqlParameter outputIdParam = new SqlParameter("@NewUserID", SqlDbType.Int)
                     {
@@ -232,7 +238,7 @@ namespace agence_bancaire_DataAccess_Layer
 
         }
 
-        public static bool UpdateUser(int UserID, int PersonID, string Password)
+        public static bool UpdateUser(int UserID, int PersonID, string Password, int RoleID)
         {
             int rowsAffected = 0;
 
@@ -247,7 +253,8 @@ namespace agence_bancaire_DataAccess_Layer
                     command.Parameters.AddWithValue("@UserID", UserID);
                     command.Parameters.AddWithValue("@PersonID", PersonID);
                     command.Parameters.AddWithValue("@Password", Password);
-           
+                    command.Parameters.AddWithValue("@RoleID", RoleID);
+
                     rowsAffected = command.ExecuteNonQuery();
 
                 }
@@ -387,5 +394,75 @@ namespace agence_bancaire_DataAccess_Layer
             return (rowsAffected > 0);
 
         }
+
+        public static bool IsUserExisByEmailAndPassword(string Email,String Password)
+        {
+            bool isFound = false;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SP_IsUserExisByEmailAndPassword", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@Email", Email);
+                    command.Parameters.AddWithValue("@Password", Password);
+
+                    int result = (int)command.ExecuteScalar();
+
+                    isFound = (result == 1);
+                }
+
+            }
+
+            return isFound;
+
+
+        }
+
+        public static bool GetUserRoleByUserID(
+                 int UserID, ref string UserRole)
+        {
+            bool isFound = false;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SP_GetUserRoleByUserID", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@UserID", UserID);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+
+                        if (reader.Read())
+                        {
+                            isFound = true;
+
+                             
+                            UserRole = (string)reader["Name"];
+                        }
+                        else
+                        {
+                            isFound = false;
+                        }
+
+                    }
+
+                }
+            }
+
+            return isFound;
+
+
+        }
+
+
+
     }
 }

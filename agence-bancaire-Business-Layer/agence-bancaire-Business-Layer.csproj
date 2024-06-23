@@ -152,10 +152,12 @@
     <Compile Include="clsClient.cs" />
     <Compile Include="clsdeposit.cs" />
     <Compile Include="clsPerson.cs" />
+    <Compile Include="clsTransaction.cs" />
     <Compile Include="clsTransfer.cs" />
     <Compile Include="clsUser.cs" />
     <Compile Include="clsWithdrawal.cs" />
     <Compile Include="Enums\enMode.cs" />
+    <Compile Include="Enums\enRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

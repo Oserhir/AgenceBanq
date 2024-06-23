@@ -306,7 +306,7 @@ namespace agence_bancaire_DataAccess_Layer
         }
 
 
-        public static int Withdrawal(float amount, DateTime date_operation, int checkingaccount_id, int LevelID)
+        public static async Task<int> Withdrawal(float amount, DateTime date_operation, int checkingaccount_id, int LevelID)
         {
             int Depose_id = -1;
 
@@ -341,7 +341,7 @@ namespace agence_bancaire_DataAccess_Layer
         }
 
 
-        public static int Transfer(float amount, DateTime date_operation, int checkingaccount_id, int targetAccount_id)
+        public static async Task<int> Transfer(float amount, DateTime date_operation, int checkingaccount_id, int targetAccount_id)
         {
             int transfer_id = -1;
 
@@ -397,6 +397,53 @@ namespace agence_bancaire_DataAccess_Layer
             }
 
             return isFound;
+
+        }
+
+        public static bool IsCheckingAccounttExistByAccountID(int AccountID)
+        {
+            bool isFound = false;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SP_ISCheckingAccountExistByAccountId", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@AccountID", AccountID);
+
+                    int result = (int)command.ExecuteScalar();
+
+                    isFound = (result == 1);
+                }
+
+            }
+            return isFound;
+        }
+
+
+        public static bool Update_Checking_Account_OverdraftLimit(int checking_account_id,float OverdraftLimit)
+        {
+            int rowsAffected = 0;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SP_UpdateCheckingAccountOverdraftLimit", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@checking_account_id", checking_account_id);
+                    command.Parameters.AddWithValue("@OverdraftLimit", OverdraftLimit);
+
+                    rowsAffected = command.ExecuteNonQuery();
+                }
+            }
+
+            return (rowsAffected > 0);
 
         }
 

@@ -19,7 +19,6 @@ namespace agence_bancaire_Business_Layer
         public DateTime CreatedDate { get; set; }
         public clsClient ClientInfo { get; set; }
 
-
         public clsAccount()
         {
             this.AccountID = -1;
@@ -85,9 +84,14 @@ namespace agence_bancaire_Business_Layer
             return clsAccountData.DeleteAccount(ID);
         }
 
-        public static bool isAccountExist(int ID)
+        public static bool isAccountExist(int AccountID)
         {
-            return clsAccountData.IsAccounttExist(ID);
+            return clsAccountData.IsAccounttExist(AccountID);
+        }
+
+        public static bool isAccountExistByClientID(int ClientID)
+        {
+            return clsAccountData.IsAccounttExistByClientID(ClientID);
         }
 
         public static clsAccount Find(int AccountID)

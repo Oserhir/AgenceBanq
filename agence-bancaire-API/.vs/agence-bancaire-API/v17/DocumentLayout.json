@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\YUSSEF\\source\\repos\\agence-bancaire\\agence-bancaire-API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3566071D-DDD1-457A-8D93-FE6CA0EC1B57}|agence-bancaire-API.csproj|c:\\users\\yussef\\source\\repos\\agence-bancaire\\agence-bancaire-api\\controllers\\peoplecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3566071D-DDD1-457A-8D93-FE6CA0EC1B57}|agence-bancaire-API.csproj|solutionrelative:controllers\\peoplecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3566071D-DDD1-457A-8D93-FE6CA0EC1B57}|agence-bancaire-API.csproj|c:\\users\\yussef\\source\\repos\\agence-bancaire\\agence-bancaire-api\\controllers\\transfercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3566071D-DDD1-457A-8D93-FE6CA0EC1B57}|agence-bancaire-API.csproj|solutionrelative:controllers\\transfercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3566071D-DDD1-457A-8D93-FE6CA0EC1B57}|agence-bancaire-API.csproj|c:\\users\\yussef\\source\\repos\\agence-bancaire\\agence-bancaire-api\\customactionfilters\\validatemoduleattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3566071D-DDD1-457A-8D93-FE6CA0EC1B57}|agence-bancaire-API.csproj|solutionrelative:customactionfilters\\validatemoduleattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3566071D-DDD1-457A-8D93-FE6CA0EC1B57}|agence-bancaire-API.csproj|c:\\users\\yussef\\source\\repos\\agence-bancaire\\agence-bancaire-api\\controllers\\clientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3566071D-DDD1-457A-8D93-FE6CA0EC1B57}|agence-bancaire-API.csproj|solutionrelative:controllers\\clientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3566071D-DDD1-457A-8D93-FE6CA0EC1B57}|agence-bancaire-API.csproj|c:\\users\\yussef\\source\\repos\\agence-bancaire\\agence-bancaire-api\\controllers\\depositcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3566071D-DDD1-457A-8D93-FE6CA0EC1B57}|agence-bancaire-API.csproj|solutionrelative:controllers\\depositcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,28 +46,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PeopleController.cs",
-              "DocumentMoniker": "C:\\Users\\YUSSEF\\source\\repos\\agence-bancaire\\agence-bancaire-API\\Controllers\\PeopleController.cs",
-              "RelativeDocumentMoniker": "Controllers\\PeopleController.cs",
-              "ToolTip": "C:\\Users\\YUSSEF\\source\\repos\\agence-bancaire\\agence-bancaire-API\\Controllers\\PeopleController.cs",
-              "RelativeToolTip": "Controllers\\PeopleController.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAAABQAAAAYAAAA",
+              "DocumentIndex": 2,
+              "Title": "DepositController.cs",
+              "DocumentMoniker": "C:\\Users\\YUSSEF\\source\\repos\\agence-bancaire\\agence-bancaire-API\\Controllers\\DepositController.cs",
+              "RelativeDocumentMoniker": "Controllers\\DepositController.cs",
+              "ToolTip": "C:\\Users\\YUSSEF\\source\\repos\\agence-bancaire\\agence-bancaire-API\\Controllers\\DepositController.cs",
+              "RelativeToolTip": "Controllers\\DepositController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAABPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-22T10:55:59.527Z",
+              "WhenOpened": "2024-06-23T21:38:52.69Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ValidateModuleAttribute.cs",
-              "DocumentMoniker": "C:\\Users\\YUSSEF\\source\\repos\\agence-bancaire\\agence-bancaire-API\\CustomActionFilters\\ValidateModuleAttribute.cs",
-              "RelativeDocumentMoniker": "CustomActionFilters\\ValidateModuleAttribute.cs",
-              "ToolTip": "C:\\Users\\YUSSEF\\source\\repos\\agence-bancaire\\agence-bancaire-API\\CustomActionFilters\\ValidateModuleAttribute.cs",
-              "RelativeToolTip": "CustomActionFilters\\ValidateModuleAttribute.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAA2AAAA",
+              "Title": "ClientController.cs",
+              "DocumentMoniker": "C:\\Users\\YUSSEF\\source\\repos\\agence-bancaire\\agence-bancaire-API\\Controllers\\ClientController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ClientController.cs",
+              "ToolTip": "C:\\Users\\YUSSEF\\source\\repos\\agence-bancaire\\agence-bancaire-API\\Controllers\\ClientController.cs",
+              "RelativeToolTip": "Controllers\\ClientController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-22T10:50:46.784Z",
+              "WhenOpened": "2024-06-23T21:38:50.863Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TransferController.cs",
+              "DocumentMoniker": "C:\\Users\\YUSSEF\\source\\repos\\agence-bancaire\\agence-bancaire-API\\Controllers\\TransferController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TransferController.cs",
+              "ToolTip": "C:\\Users\\YUSSEF\\source\\repos\\agence-bancaire\\agence-bancaire-API\\Controllers\\TransferController.cs",
+              "RelativeToolTip": "Controllers\\TransferController.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAAABQAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-23T21:21:12.313Z",
               "EditorCaption": ""
             }
           ]

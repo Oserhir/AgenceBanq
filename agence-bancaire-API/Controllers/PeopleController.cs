@@ -4,6 +4,7 @@ using agence_bancaire_Business_Layer;
 using agence_bancaire_Business_Layer.Enums;
 using AutoMapper;
 using Azure.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections;
@@ -15,13 +16,14 @@ namespace agence_bancaire_API.Controllers
     // https://localhost:7252/api/People
     [Route("api/[controller]")]
     [ApiController]
+   
     public class PeopleController : ControllerBase
     {
         [HttpPost]
-        [ValidateModule]
-        public async Task<IActionResult> createPerson([FromBody] CreatePersonRequestDTO request)
+        //[ValidateModule]
+        //  Create custom role validation [Authorize (Roles = "Admin")  ]
+        public async Task<IActionResult> CreatePerson([FromBody] CreatePersonRequestDTO request)
         {
-            
                 clsPerson _Person = new clsPerson();
 
                 _Person.firstName = request.firstName;
@@ -36,7 +38,7 @@ namespace agence_bancaire_API.Controllers
                 {
                     if(_Person.Save())
                     {
-                        return CreatedAtAction(nameof(createPerson), new { id = _Person.PersonID }, _Person);
+                        return CreatedAtAction(nameof(CreatePerson), new { id = _Person.PersonID }, _Person);
                     }
                     else
                     {
@@ -54,7 +56,7 @@ namespace agence_bancaire_API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllPeople()
+        public async Task<IActionResult> GetPeople()
         {
             DataTable dt = clsPerson.GetAllPeople();
 
@@ -74,7 +76,7 @@ namespace agence_bancaire_API.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-        public async Task<IActionResult> GetPersonID([FromRoute] int id)
+        public async Task<IActionResult> GetPersonByID([FromRoute] int id)
         {
             clsPerson person = clsPerson.Find(id);
 
@@ -99,8 +101,8 @@ namespace agence_bancaire_API.Controllers
             person.PhoneNumber = request.PhoneNumber;
             person.Address = request.Address;
             person.DateOfBirth = request.DateOfBirth;
-            person.Email = request.Email;
-            person.CIN = request.CIN;
+            // person.Email = request.Email;
+            // person.CIN = request.CIN;
 
             if (person.Save())
             {
@@ -122,17 +124,16 @@ namespace agence_bancaire_API.Controllers
 
             if (clsPerson.DeletePerson(id))
             {
-                return Ok(person);
+                return NoContent();
+                //return Ok(person);
             }
             else
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Failed to Update Person. Internal server error occurred.");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Failed to Delete Person. Internal server error occurred.");
             }
 
         }
 
     }
-
-
 
 }

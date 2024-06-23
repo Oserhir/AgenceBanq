@@ -5,11 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace agence_bancaire_API.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
     public class WithdrawalController : Controller
     {
+        private static readonly object _lock = new object();
+
         [HttpPost]
         public async Task<IActionResult> Withdrawal([FromBody] DepositDTO request)
         {
@@ -31,31 +32,54 @@ namespace agence_bancaire_API.Controllers
                 _Withdrawal.date_operation = DateTime.Now;
                 _Withdrawal.LevelID = request.LevelID;
 
+                var tasks = new List<Task<bool>>();
+
+                lock (_lock)
+                {
+                    tasks.Add(Task.Run(async () => await _Withdrawal.Save()));
+                }
+
                 try
                 {
-                    if (_Withdrawal.Save())
+                    var results = await Task.WhenAll(tasks);
+
+                    if (Array.TrueForAll(results, result => result))
                     {
                         return CreatedAtAction(nameof(Withdrawal), null);
                     }
                     else
                     {
-                        return StatusCode(StatusCodes.Status500InternalServerError, $"Failed to Withdrawal Money. Internal server error occurred.");
+                        return StatusCode(StatusCodes.Status500InternalServerError, "Failed to Withdrawal Money. Internal server error occurred.");
                     }
-
                 }
                 catch (Exception ex)
                 {
                     return StatusCode(StatusCodes.Status500InternalServerError, $"{ex}");
                 }
 
+                //try
+                //{
+                //    if (await _Withdrawal.Save())
+                //    {
+                //        return CreatedAtAction(nameof(Withdrawal), null);
+                //    }
+                //    else
+                //    {
+                //        return StatusCode(StatusCodes.Status500InternalServerError, $"Failed to Withdrawal Money. Internal server error occurred.");
+                //    }
 
-            }  
+                //}
+                //catch (Exception ex)
+                //{
+                //    return StatusCode(StatusCodes.Status500InternalServerError, $"{ex}");
+                //}
+
+
+            }
             else
             {
                 return BadRequest("Insufficient funds including overdraft limit.");
             }
-
-           
 
         }
     }

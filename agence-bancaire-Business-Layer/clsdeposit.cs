@@ -34,21 +34,14 @@ namespace agence_bancaire_DataAccess_Layer
             this.LevelID = LevelID;
         }
 
-        private bool _deposit()
+        private async Task<bool> _depositAsync()
         {
-            return clsDepositData.deposit(this.amount,this.date_operation,this.checkingaccount_id,this.LevelID) != -1;
+            return await clsDepositData.deposit(this.amount,this.date_operation,this.checkingaccount_id,this.LevelID) != -1;
         }
 
-        public bool Save()
+        public async Task<bool> Save()
         {
-            if (_deposit())
-            {
-                 return true;
-            }
-            else
-            {
-                return false;
-            }
+            return await _depositAsync();
         }
 
     }

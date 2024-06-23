@@ -38,21 +38,14 @@ namespace agence_bancaire_Business_Layer
             this.targetAccount_id = targetAccount_id;
             
         }
-        private bool _transfer()
+        private async Task<bool> _transfer()
         {
-            return clsCheckingAccountData.Transfer(this.Amount, this.date_operation, this.checkingaccount_id, this.targetAccount_id) != -1;
+            return await clsCheckingAccountData.Transfer(this.Amount, this.date_operation, this.checkingaccount_id, this.targetAccount_id) != -1;
         }
 
-        public bool Save()
+        public async Task<bool> Save()
         {
-            if (_transfer())
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return await _transfer();
         }
 
     }

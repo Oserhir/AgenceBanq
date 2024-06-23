@@ -249,8 +249,6 @@ namespace agence_bancaire_DataAccess_Layer
             return (rowsAffected > 0);
         }
 
-       
-
         public static bool IsAccounttExist(int AccountID)
         {
             bool isFound = false;
@@ -264,6 +262,32 @@ namespace agence_bancaire_DataAccess_Layer
                     command.CommandType = CommandType.StoredProcedure;
 
                     command.Parameters.AddWithValue("@AccountID", AccountID);
+
+                    int result = (int)command.ExecuteScalar();
+
+                    isFound = (result == 1);
+                }
+
+            }
+
+            return isFound;
+
+
+        }
+
+        public static bool IsAccounttExistByClientID(int ClientID)
+        {
+            bool isFound = false;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SP_IsAccountExistByClientID", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@ClientID", ClientID);
 
                     int result = (int)command.ExecuteScalar();
 

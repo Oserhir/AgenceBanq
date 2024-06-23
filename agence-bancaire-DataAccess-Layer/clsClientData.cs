@@ -158,7 +158,8 @@ namespace agence_bancaire_DataAccess_Layer
 
         }
 
-        public static bool UpdateClient(int ClientID , int PersonID, int CreatedByUserID, DateTime CreatedDate)
+        public static bool UpdateClient(int ClientID, string  firstName, string lastName,
+                DateTime DateOfBirth, string PhoneNumber, string Address)
         {
             int rowsAffected = 0;
 
@@ -171,12 +172,13 @@ namespace agence_bancaire_DataAccess_Layer
                     command.CommandType = CommandType.StoredProcedure;
 
                     command.Parameters.AddWithValue("@ClientID", ClientID);
-                    command.Parameters.AddWithValue("@PersonID", PersonID);
-                    command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
-                    command.Parameters.AddWithValue("@CreatedDate", CreatedDate);
+                    command.Parameters.AddWithValue("@firstName", firstName);
+                    command.Parameters.AddWithValue("@lastName", lastName);
+                    command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
+                    command.Parameters.AddWithValue("@PhoneNumber", PhoneNumber);
+                    command.Parameters.AddWithValue("@Address", Address);
 
                     rowsAffected = command.ExecuteNonQuery();
-
                 }
             }
 
@@ -252,6 +254,32 @@ namespace agence_bancaire_DataAccess_Layer
                     command.CommandType = CommandType.StoredProcedure;
 
                     command.Parameters.AddWithValue("@CIN", CIN);
+
+                    int result = (int)command.ExecuteScalar();
+
+                    isFound = (result == 1);
+                }
+
+            }
+
+            return isFound;
+
+
+        }
+
+        public static bool IsClientExistByPersonID(int PersonID)
+        {
+            bool isFound = false;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SP_IsClientExistByPersonID", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@PersonID", PersonID);
 
                     int result = (int)command.ExecuteScalar();
 

@@ -12,6 +12,20 @@ namespace agence_bancaire_API.Controllers
         [HttpPost]
         public async Task<IActionResult> createCheckingAccount([FromBody] CreateChekingAccountDTO request)
         {
+            // is AccoundID EXIST
+            int accountId = request.Account_Id;
+
+            if ( !clsAccount.isAccountExist(accountId)  )
+            {
+                return StatusCode(StatusCodes.Status404NotFound, $"Account with ID '{accountId}' was not found.");
+            }
+
+            // is this Account has already cheking account
+            if (clsCheckingAccount.IsCheckingAccounttExistByAccountIdAsync(accountId))
+            {
+                return StatusCode(StatusCodes.Status409Conflict, $"Account with ID '{accountId}' already has a checking account.");
+            }
+
             clsCheckingAccount _CheckingAccount = new clsCheckingAccount();
 
             _CheckingAccount.Account_Id = request.Account_Id;
@@ -74,25 +88,29 @@ namespace agence_bancaire_API.Controllers
         }
 
         [HttpPut]
-        [Route("{id:int}")]
-        public async Task<IActionResult> UpdateChecking_Account([FromRoute] int id, CreateChekingAccountDTO request)
+        [Route("overdraftLimit/{id:int}")]
+        public async Task<IActionResult> UpdateOverdraftLimit([FromRoute] int id, UpdateOverdraftLimitDTO request)
         {
+            float overdraftLimit = request.overdraftLimit;
+
+            if (overdraftLimit < 0 )
+            {
+                return BadRequest("overdraftLimit must be non-negative values.");
+            }
+
             clsCheckingAccount _CheckingAccount = clsCheckingAccount.Find(id);
 
             if (_CheckingAccount is null) { return NotFound(); }
+           
+            _CheckingAccount.overdraftLimit = overdraftLimit;
 
-            _CheckingAccount.Account_Id = request.Account_Id;
-            _CheckingAccount.overdraftLimit = request.overdraftLimit ?? 1000;
-            _CheckingAccount.CreatedDate = DateTime.Now;
-            _CheckingAccount.Balance = request.Balance ?? 0;
-
-            if (_CheckingAccount.Save())
+            if (_CheckingAccount.Update_Checking_Account_OverdraftLimit())
             {
                 return Ok(_CheckingAccount);
             }
             else
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Failed to Update Client. Internal server error occurred.");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Failed to Update Balance. Internal server error occurred.");
             }
 
         }
@@ -107,11 +125,11 @@ namespace agence_bancaire_API.Controllers
 
             if (clsCheckingAccount.DeleteCheckingAccount(id))
             {
-                return Ok(_CheckingAccount);
+                return NoContent();
             }
             else
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Failed to Delet eChecking Account. Internal server error occurred.");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Failed to Delete Checking Account. Internal server error occurred.");
             }
         }
 

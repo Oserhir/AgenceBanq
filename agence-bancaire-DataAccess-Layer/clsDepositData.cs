@@ -11,7 +11,7 @@ namespace agence_bancaire_DataAccess_Layer
    
     public class clsDepositData
     {
-        public static int deposit(float amount, DateTime date_operation, int checkingaccount_id, int LevelID)
+        public static async Task<int> deposit(float amount, DateTime date_operation, int checkingaccount_id, int LevelID)
         {
             int Depose_id = -1;
 

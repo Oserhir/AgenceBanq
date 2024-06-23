@@ -10,10 +10,11 @@
         public string CIN { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Password { get; set; }
+        public int RoleID { get; set; }
 
         public clsUserDTO(string firstName, string lastName, string PhoneNumber, 
             string Address, string Email, string CIN, DateTime DateOfBirth
-            , string Password)
+            , string Password, int roleID)
         {
             this.firstName = firstName;
             this.lastName = lastName;
@@ -23,6 +24,7 @@
             this.CIN = CIN;
             this.DateOfBirth = DateOfBirth;
             this.Password = Password;
+            RoleID = roleID;
         }
 
     }

@@ -5,6 +5,8 @@ namespace agence_bancaire_API.DTO
 {
     public class clsClientDTO
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "First Name is required")]
         [MinLength(3, ErrorMessage = "First Name must be at least 3 characters long")]
         [MaxLength(50, ErrorMessage = "First Name cannot exceed 50 characters")]
@@ -39,9 +41,10 @@ namespace agence_bancaire_API.DTO
 
         public DateTime CreatedDate { get; set; }
 
-        public clsClientDTO(string firstName, string lastName, string PhoneNumber, string Address, string Email, string CIN, DateTime DateOfBirth
+        public clsClientDTO(int Id ,string firstName, string lastName, string PhoneNumber, string Address, string Email, string CIN, DateTime DateOfBirth
             , DateTime CreatedDate)
         {
+            this.Id = Id;
             this.firstName = firstName;
             this.lastName = lastName;
             this.PhoneNumber = PhoneNumber;

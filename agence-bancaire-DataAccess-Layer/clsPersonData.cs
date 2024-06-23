@@ -209,28 +209,76 @@ namespace agence_bancaire_DataAccess_Layer
 
         public static bool IsPersonExist(int PersonID)
         {
+            bool isFound = false;
 
-            //bool isFound = false;
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                connection.Open();
 
-            //using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
-            //{
-            //    connection.Open();
+                using (SqlCommand command = new SqlCommand("SP_IsPersonExist", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
 
-            //    using (SqlCommand command = new SqlCommand("SP_IsPersonExist", connection))
-            //    {
-            //        command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@PersonID", PersonID);
 
-            //        command.Parameters.AddWithValue("@PersonID", PersonID);
+                    int result = (int)command.ExecuteScalar();
 
-            //        int result = (int)command.ExecuteScalar();
+                    isFound = (result == 1);
+                }
 
-            //        isFound = (result == 1);
-            //    }
+            }
 
-            //}
+            return isFound;
 
-            //return isFound;
-            return true;
+        }
+
+        public static bool IsEmailExist(string Email)
+        {
+            bool isFound = false;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SP_CheckEmailExists", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@Email", Email);
+
+                    int result = (int)command.ExecuteScalar();
+
+                    isFound = (result == 1);
+                }
+
+            }
+
+            return isFound;
+
+        }
+
+        public static bool IsCINExist(string CIN)
+        {
+            bool isFound = false;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SP_CheckCINExists", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@CIN", CIN);
+
+                    int result = (int)command.ExecuteScalar();
+
+                    isFound = (result == 1);
+                }
+
+            }
+
+            return isFound;
 
         }
 

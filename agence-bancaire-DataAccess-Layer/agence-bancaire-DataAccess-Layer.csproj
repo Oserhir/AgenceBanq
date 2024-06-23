@@ -153,6 +153,7 @@
     <Compile Include="clsDataAccessSettings.cs" />
     <Compile Include="clsDepositData.cs" />
     <Compile Include="clsPersonData.cs" />
+    <Compile Include="clsTransactionData.cs" />
     <Compile Include="clsUserData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

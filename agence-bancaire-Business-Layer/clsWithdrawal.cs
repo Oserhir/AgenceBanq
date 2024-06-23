@@ -34,21 +34,14 @@ namespace agence_bancaire_Business_Layer
             this.LevelID = LevelID;
         }
 
-        private bool _Withdrawal()
+        private async Task<bool> _Withdrawal()
         {
-            return clsCheckingAccountData.Withdrawal(this.amount, this.date_operation, this.checkingaccount_id, this.LevelID) != -1;
+            return await clsCheckingAccountData.Withdrawal(this.amount, this.date_operation, this.checkingaccount_id, this.LevelID) != -1;
         }
 
-        public bool Save()
+        public async Task<bool> Save()
         {
-            if (_Withdrawal())
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return await _Withdrawal();
         }
 
     }

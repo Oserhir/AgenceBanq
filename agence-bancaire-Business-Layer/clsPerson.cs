@@ -125,6 +125,13 @@ namespace agence_bancaire_Business_Layer
 
         }
 
-
+        public static bool IsEmailExist(string Email)
+        {
+            return clsPersonData.IsEmailExist(Email);
+        }
+        public static bool IsCINExist(string CIN)
+        {
+            return clsPersonData.IsCINExist(CIN);
+        }
     }
 }

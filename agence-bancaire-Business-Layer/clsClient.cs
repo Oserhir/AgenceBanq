@@ -54,7 +54,8 @@ namespace agence_bancaire_Business_Layer
 
         private bool _UpdateClient()
         {
-            return clsClientData.UpdateClient(this.ClientID, this.PersonID, this.CreatedByUserID, this.CreatedDate);
+            return clsClientData.UpdateClient(this.ClientID, this.PersonInfo.firstName, this.PersonInfo.lastName,
+                this.PersonInfo.DateOfBirth, this.PersonInfo.PhoneNumber, this.PersonInfo.Address );
         }
 
         public bool Save()
@@ -112,5 +113,10 @@ namespace agence_bancaire_Business_Layer
 
         }
 
+
+        public static bool isClientExistByPersonIDAsync(int PersonID)
+        {
+            return clsClientData.IsClientExistByPersonID(PersonID);
+        }
     }
 }

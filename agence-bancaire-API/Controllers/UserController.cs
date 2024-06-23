@@ -1,5 +1,6 @@
 ﻿using agence_bancaire_API.DTO;
 using agence_bancaire_Business_Layer;
+using agence_bancaire_Business_Layer.Enums;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Net;
@@ -13,27 +14,28 @@ namespace agence_bancaire_API.Controllers
         [HttpPost]
         public async Task<IActionResult> createUser([FromBody] CreateUserRequestDTO request)
         {
-            clsUser _User = new clsUser();
+                clsUser _User = new clsUser();
 
-            _User.PersonID = request.PersonID;
-            _User.Password = request.Password;
+                _User.PersonID = request.PersonID;
+                _User.Password = request.Password; // Hashed!!
+                _User.RoleID = (int)enRole.User;
 
-            try
-            {
-                if (_User.Save())
+                try
                 {
-                    return CreatedAtAction(nameof(createUser), new { id = _User.UserID }, _User);
-                }
-                else
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError, $"Failed to create User. Internal server error occurred.");
-                }
+                    if (_User.Save())
+                    {
+                        return CreatedAtAction(nameof(createUser), new { id = _User.UserID }, _User);
+                    }
+                    else
+                    {
+                        return StatusCode(StatusCodes.Status500InternalServerError, $"Failed to create User. Internal server error occurred.");
+                    }
 
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"{ex}");
-            }
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, $"{ex}");
+                }
 
         }
 
@@ -49,6 +51,7 @@ namespace agence_bancaire_API.Controllers
                 list.Add(new clsUserDTO(row.Field<string>("FirstName").Trim(), row.Field<string>("LastName").Trim()
                     , row.Field<string>("PhoneNumber").Trim(), row.Field<string>("Address").Trim(), row.Field<string>("Email").Trim(),
                     row.Field<string>("CIN").Trim(), Convert.ToDateTime(row["DateOfBirth"]), row.Field<string>("Password").Trim()
+                    , row.Field<int>("RoleID") 
                     ));
 
                 // list.Add( new clsUser(row.Field<int>("UserID"), row.Field<int>("PersonID"), row["Password"].ToString().Trim()) ) ;
@@ -67,21 +70,22 @@ namespace agence_bancaire_API.Controllers
 
             var newUser = new clsUserDTO(User.PersonInfo.firstName.Trim(), User.PersonInfo.lastName.Trim()
                     , User.PersonInfo.PhoneNumber.Trim(), User.PersonInfo.Address.Trim(), User.PersonInfo.Email.Trim(),
-                   User.PersonInfo.CIN.Trim(), User.PersonInfo.DateOfBirth, User.Password.Trim());
+                   User.PersonInfo.CIN.Trim(), User.PersonInfo.DateOfBirth, User.Password.Trim(), User.RoleID);
 
             return Ok(newUser);
         }
 
         [HttpPut]
         [Route("{id:int}")]
-        public async Task<IActionResult> UpdateUser([FromRoute] int id, CreateUserRequestDTO request)
+        public async Task<IActionResult> ChangePassword([FromRoute] int id, ChangeUserPassword request)
         {
             clsUser user = clsUser.Find(id);
+         
 
             if (user is null) { return NotFound(); }
 
             user.Password = request.Password;
-            user.PersonID = request.PersonID;
+            // user.PersonID = request.PersonID;
 
             if (user.Save())
             {
@@ -89,7 +93,7 @@ namespace agence_bancaire_API.Controllers
             }
             else
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Failed to Update User. Internal server error occurred.");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Failed to Change Password. Internal server error occurred.");
             }
 
         }

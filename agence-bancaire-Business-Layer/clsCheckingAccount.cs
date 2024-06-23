@@ -134,6 +134,15 @@ namespace agence_bancaire_Business_Layer
             return clsCheckingAccountData.IsCheckingAccounttExist(ID);
         }
 
+        public static bool IsCheckingAccounttExistByAccountIdAsync(int AccountID)
+        {
+            return clsCheckingAccountData.IsCheckingAccounttExistByAccountID(AccountID);
+        }
+
+        public bool Update_Checking_Account_OverdraftLimit()
+        {
+            return clsCheckingAccountData.Update_Checking_Account_OverdraftLimit(this.checking_account_id, this.overdraftLimit);
+        }
 
     }
 }

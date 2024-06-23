@@ -28,7 +28,6 @@ namespace agence_bancaire_API.Controllers
                     if (_Client.Save())
                     {
                         return CreatedAtAction(nameof(createClient), null);
-
                     }
                     else
                     {
@@ -56,7 +55,7 @@ namespace agence_bancaire_API.Controllers
 
             foreach (DataRow row in dt.Rows)
             {
-                list.Add(new clsClientDTO(row.Field<string>("FirstName").Trim(), row.Field<string>("LastName").Trim()
+                list.Add(new clsClientDTO(row.Field<int>("ClientID"),row.Field<string>("FirstName").Trim(), row.Field<string>("LastName").Trim()
                     , row.Field<string>("PhoneNumber").Trim(), row.Field<string>("Address").Trim(), row.Field<string>("Email").Trim(),
                     row.Field<string>("CIN").Trim(), Convert.ToDateTime(row["CreatedDate"]), Convert.ToDateTime(row["CreatedDate"])
                     ));
@@ -67,13 +66,13 @@ namespace agence_bancaire_API.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-        public async Task<IActionResult> GetClientID([FromRoute] int id)
+        public async Task<IActionResult> GetClient([FromRoute] int id)
         {
             clsClient client = clsClient.Find(id);
 
             if (client is null) { return NotFound(); }
 
-            var NewClient =  new clsClientDTO(client.PersonInfo.firstName.Trim(), client.PersonInfo.lastName.Trim()
+            var NewClient =  new clsClientDTO(client.ClientID, client.PersonInfo.firstName.Trim(), client.PersonInfo.lastName.Trim()
                     , client.PersonInfo.PhoneNumber.Trim() , client.PersonInfo.Address.Trim(), client.PersonInfo.Email.Trim(),
                     client.PersonInfo.CIN.Trim(), client.PersonInfo.DateOfBirth, client.CreatedDate
                     );
@@ -83,17 +82,23 @@ namespace agence_bancaire_API.Controllers
 
         [HttpPut]
         [Route("{id:int}")]
-        public async Task<IActionResult> UpdateClient([FromRoute] int id, CreateClientRequestDTO request)
+        public async Task<IActionResult> UpdateClient([FromRoute] int id, UpdateClientRequestDTO request)
         {
             clsClient client = clsClient.Find(id);
 
             if (client is null) { return NotFound(); }
-            
-            client.PersonID = request.PersonID;
+
+            client.PersonInfo.firstName = request.firstName;
+            client.PersonInfo.lastName = request.lastName;
+            client.PersonInfo.PhoneNumber = request.PhoneNumber;
+            client.PersonInfo.DateOfBirth = request.DateOfBirth;
+            client.PersonInfo.Address = request.Address;
+
+            //client.PersonID = request.PersonID;
 
             if (client.Save())
             {
-                var NewClient = new clsClientDTO(client.PersonInfo.firstName.Trim(), client.PersonInfo.lastName.Trim()
+                var NewClient = new clsClientDTO(client.ClientID,client.PersonInfo.firstName.Trim(), client.PersonInfo.lastName.Trim()
                    , client.PersonInfo.PhoneNumber.Trim(), client.PersonInfo.Address.Trim(), client.PersonInfo.Email.Trim(),
                    client.PersonInfo.CIN.Trim(), client.PersonInfo.DateOfBirth, client.CreatedDate );
 
