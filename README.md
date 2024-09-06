@@ -22,7 +22,7 @@
 - ✅ Delete a Checking Account
 - ✅ Update Overdraft Limit
 
-  ### Client Management:
+  ### Client Management
 
 - ✅ Create a New Client
 - ✅ View All Clients
@@ -30,7 +30,7 @@
 - ✅ Update Client Information
 - ✅ Delete a Client
 
-### Deposit Management:
+### Deposit Management
 
 - ✅ Make a Deposit
 
@@ -39,9 +39,9 @@
 - ✅ View All Transactions
 - ✅ View a Specific Transaction
 
-  ###  Transfer
+  ###  Fund Transfer
 
-- ✅ Transfer : Users can transfer funds between accounts
+- ✅ Transfer money from one account to another account 
 
 ###  User Management
 
@@ -54,3 +54,8 @@
 ###  Withdrawal Management
 
 - ✅ Make a Withdrawal
+
+<br>
+
+  
+![screencapture-localhost-7252-swagger-index-html-2024-09-06-14_54_04](https://github.com/user-attachments/assets/4afd4e62-69d9-4fb9-91f4-dbfe70322dbe)
