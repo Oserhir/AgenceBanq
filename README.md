@@ -1,4 +1,4 @@
-# My AgenceBanq Software Requirements
+# AgenceBanq Software Requirements
 
 ## agneceBanq Features :
 
