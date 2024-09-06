@@ -11,8 +11,8 @@
 
 ### Authentication and Authorization
 
-- ✅ User Registration
-- ✅ User Login
+- ✅ Sign-Up/Registration
+- ✅ Login
 
 ### Checking Account Management
 
@@ -36,10 +36,10 @@
 
 ### Transaction Management
 
-- ✅ View All Transactions
+- ✅ Transaction History
 - ✅ View a Specific Transaction
 
-  ###  Fund Transfer
+###  Fund Transfer
 
 - ✅ Transfer money from one account to another account 
 
